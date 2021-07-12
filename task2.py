@@ -38,4 +38,4 @@ products["customer_ids"] = products["customers"].apply(
     lambda x: ''.join(str(list(x)).split(",")).replace("[", "").replace("]", "")
 )
 
-products["customer_ids"].to_csv("product_customers.csv", index=True, header=True)
+products["customer_ids"].to_csv("task2_product_customers.csv", index=True, header=True)

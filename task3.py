@@ -37,4 +37,4 @@ dfJoin.index.names = ['id']
 # Generación del csv con la columna total_euros en orden descendente
 dfJoin[["firstname", "lastname", "total_euros"]].sort_values(
     by=["total_euros"], ascending=False
-).to_csv("customer_ranking.csv", index=True, header=True)
+).to_csv("task3_customer_ranking.csv", index=True, header=True)

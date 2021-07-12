@@ -39,6 +39,6 @@ orders["prices"] = orders.products.apply(lambda x: [products.loc[v].cost for v i
 orders["SumaPedido"] = orders["prices"].apply(lambda suma: sum(suma))
 
 # Creación del csv nuevo
-orders[["SumaPedido"]].to_csv("order_prices.csv", index=True, header=True)
+orders[["SumaPedido"]].to_csv("task1_order_prices.csv", index=True, header=True)
 
 
