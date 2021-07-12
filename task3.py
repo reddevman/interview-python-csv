@@ -5,7 +5,6 @@
 4. Euros totales gastados en todas las compras que haya hecho
 5. Generar archivo customer_ranking.csv 
 """
-# orders[["SumaPedido"]].to_csv("order_prices.csv", index=True, header=True)
 
 import pandas as pd
 
@@ -20,18 +19,22 @@ orders.products = orders.products.str.split(" ").apply(
 
 orders["prices"] = orders.products.apply(lambda x: [products.loc[v].cost for v in x])
 
+# Para cada registro realiza la suma total
 orders["total_euros"] = orders["prices"].apply(lambda suma: sum(suma))
 
-
+# Agrupa el DataFrame por cliente con la función suma
 nuevo_df = orders.groupby(["customer"]).sum()
 
 #pd.concat([nuevo_df, customers], axis=1)
+# Unir el DataFrame antes creado con los clientes
 dfJoin = nuevo_df.join(customers)
 
+# Establece como índice el id
 dfJoin.index.names = ['id']
 
 #df.columns = ['a', 'b']
 
+# Generación del csv con la columna total_euros en orden descendente
 dfJoin[["firstname", "lastname", "total_euros"]].sort_values(
     by=["total_euros"], ascending=False
 ).to_csv("customer_ranking.csv", index=True, header=True)

@@ -26,7 +26,8 @@ orders.products = orders.products.str.split(" ").apply(
 - Declaración de nueva variable
 - Para todos los elementos de la variable orders.products se le aplica la función lambda
 - Función lambda que localiza en el csv de productos todos los cost y los itera
-para almacenarlos en la nueva variable order['prices']
+para almacenarlos en la nueva variable order['prices'] y mostrarlos como en orders en el campo 
+products pero con el precio en vez de el id del producto
 """
 orders["prices"] = orders.products.apply(lambda x: [products.loc[v].cost for v in x])
 

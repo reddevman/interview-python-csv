@@ -18,13 +18,22 @@ orders.products = orders.products.str.split(" ").apply(
     lambda order_list: [int(item) for item in order_list]
 )
 
+# Variable que creará con set una lista de tantas posiciones como productos haya (len)
 products["customers"] = [set() for _ in range(len(products))]
 
+""" 
+Recorrido para encontrar la coincidencia entre los clientes y los pedidos que hayan hecho
+de un producto o varios
+"""
 for index, row in products.iterrows():
     for index2, row2 in orders.iterrows():
         if index in row2.products:
             row.customers.add(row2.customer)
 
+"""
+Crea almacenando en una variable el campo de los clientes y almacena en dicho registro los clientes
+separados por espacios quitando los corchetes iniciales y finales []
+"""
 products["customer_ids"] = products["customers"].apply(
     lambda x: ''.join(str(list(x)).split(",")).replace("[", "").replace("]", "")
 )
